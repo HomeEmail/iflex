@@ -1,0 +1,553 @@
+/*设置  Flex 容器 begin*/
+[iflex]{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+	
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+/*设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。
+*/
+[iflex]>* {
+    display: block
+}
+
+[iflex]>[iflex] {
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+/*容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）
+*/
+/*下面是 容器的属性
+*/
+/*flex-direction属性决定主轴的方向（即项目的排列方向）。*/
+[iflex~="mainDir:left"]{ /*//从左到右*/
+	-webkit-box-orient: horizontal;/*//兼容旧标准*/
+	-webkit-box-direction: normal;/*//兼容旧标准*/
+
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+[iflex~="mainDir:right"]{ /*//从右到左*/
+	-webkit-box-orient: horizontal;/*//兼容旧标准*/
+	-webkit-box-direction: reverse;/*//兼容旧标准*/
+
+	-webkit-flex-direction: row-reverse;
+	-ms-flex-direction: row-reverse;
+	flex-direction: row-reverse;
+	/*-webkit-box-pack: end;*/
+}
+
+[iflex~="mainDir:top"] {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+[iflex~="mainDir:bottom"] {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: reverse;
+
+	-webkit-flex-direction: column-reverse;
+	-ms-flex-direction: column-reverse;
+	flex-direction: column-reverse;
+	/*-webkit-box-pack: end;*/
+}
+
+/*flex-wrap属性定义，如果一条轴线排不下，如何换行
+Chrome,FireFox旧版本不支持，没得兼容
+nowrap（默认）：不换行。
+wrap：换行，第一行在上方。
+wrap-reverse：换行，第一行在下方。*/
+[iflex~="flexWrap:nowrap"]{
+	-webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+}
+[iflex~="flexWrap:wrap"]{
+	-webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+[iflex~="flexWrap:reverse"]{
+	-webkit-flex-wrap: wrap-reverse;
+    -ms-flex-wrap: wrap-reverse;
+	flex-wrap: wrap-reverse;
+}
+
+
+/*justify-content属性定义了项目在主轴上的对齐方式。*/
+/*它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。
+flex-start（默认值）：左对齐
+flex-end：右对齐
+center： 居中
+space-between：两端对齐，项目之间的间隔都相等。
+space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。*/
+[iflex~="mainAlign:left"] {
+	-webkit-box-pack: start;/*//old chrome*/
+	-ms-flex-pack: start;/*//ie10*/
+
+	-webkit-justify-content: flex-start;
+	justify-content: flex-start;
+}
+[iflex~="mainAlign:right"] {
+	-webkit-box-pack: end;/*//old chrome*/
+	-ms-flex-pack: end;/*//ie10*/
+
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}
+[iflex~="mainAlign:center"] {
+	-webkit-box-pack: center;/*//old chrome*/
+	-ms-flex-pack: center;/*//ie10*/
+
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+[iflex~="mainAlign:justify"] { //两端对齐
+	-webkit-box-pack: justify;/*//old chrome*/
+	-ms-flex-pack: justify;/*//ie10*/
+
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+[iflex~="mainAlign:spaceAround"] { /*//每个项目两侧的间隔相等*/
+	/*ie10,old chrome 不支持这个属性值*/
+
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+}
+
+/*align-items属性定义项目在交叉轴上如何对齐。
+适用所有item在只有一行上，，如果item换行了就不生效了*/
+/*
+它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
+flex-start：交叉轴的起点对齐。
+flex-end：交叉轴的终点对齐。
+center：交叉轴的中点对齐。
+baseline: 项目的第一行文字的基线对齐。
+stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+*/
+
+[iflex~="crossAlign:top"] {
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+}
+[iflex~="crossAlign:bottom"] {
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+}
+[iflex~="crossAlign:center"] {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	
+	-webkit-align-items: center;
+	align-items: center;
+}
+[iflex~="crossAlign:baseline"] {
+	-webkit-box-align: baseline;
+	-ms-flex-align: baseline;
+	
+	-webkit-align-items: baseline;
+	align-items: baseline;
+}
+[iflex~="crossAlign:stretch"] {
+	-webkit-box-align: stretch;
+	-ms-flex-align: stretch;
+	
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
+适用所有item在多行上，，如果item就只有一行了就不生效了
+ie10,old chrome 不支持这个属性*/
+/*
+flex-start：与交叉轴的起点对齐。
+flex-end：与交叉轴的终点对齐。
+center：与交叉轴的中点对齐。
+space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+stretch（默认值）：轴线占满整个交叉轴。
+*/
+
+[iflex~="multCrossAlign:top"] {
+	-webkit-align-content: flex-start;
+	align-content: flex-start;
+}
+[iflex~="multCrossAlign:bottom"] {
+	-webkit-align-content: flex-end;
+	align-content: flex-end;
+}
+[iflex~="multCrossAlign:center"] {
+	-webkit-align-content: center;
+	align-content: center;
+}
+[iflex~="multCrossAlign:justify"] {
+	-webkit-align-content: space-between;
+	align-content: space-between;
+}
+[iflex~="multCrossAlign:spaceAround"] {
+	-webkit-align-content: space-around;
+	align-content: space-around;
+}
+[iflex~="multCrossAlign:stretch"] {
+	-webkit-align-content: stretch;
+	align-content: stretch;
+}
+
+
+
+/*设置  Flex 容器 end
+
+设置   Flex 项目（flex item） begin
+
+order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。*/
+[iflex-item~="order:0"]{
+	-ms-flex-order:0;
+	-webkit-box-ordinal-group:0;
+	order:0;
+}
+[iflex-item~="order:1"]{
+	-ms-flex-order:1;
+	-webkit-box-ordinal-group:1;
+	order:1;
+}
+[iflex-item~="order:2"]{
+	-ms-flex-order:2;
+	-webkit-box-ordinal-group:2;
+	order:2;
+}
+[iflex-item~="order:3"]{
+	-ms-flex-order:3;
+	-webkit-box-ordinal-group:3;
+	order:3;
+}
+[iflex-item~="order:4"]{
+	-ms-flex-order:4;
+	-webkit-box-ordinal-group:4;
+	order:4;
+}
+[iflex-item~="order:5"]{
+	-ms-flex-order:5;
+	-webkit-box-ordinal-group:5;
+	order:5;
+}
+[iflex-item~="order:6"]{
+	-ms-flex-order:6;
+	-webkit-box-ordinal-group:6;
+	order:6;
+}
+[iflex-item~="order:7"]{
+	-ms-flex-order:7;
+	-webkit-box-ordinal-group:7;
+	order:7;
+}
+[iflex-item~="order:8"]{
+	-ms-flex-order:8;
+	-webkit-box-ordinal-group:8;
+	order:8;
+}
+[iflex-item~="order:9"]{
+	-ms-flex-order:9;
+	-webkit-box-ordinal-group:9;
+	order:9;
+}
+[iflex-item~="order:10"]{
+	-ms-flex-order:10;
+	-webkit-box-ordinal-group:10;
+	order:10;
+}
+
+
+/*
+flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
+
+flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
+负值对该属性无效。
+
+flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间
+
+flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+
+
+align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+align-self: auto | flex-start | flex-end | center | baseline | stretch;
+
+old chrome 不支持
+*/
+
+
+[iflex~="box:mean"]>*, /*//每个项目平均分配空间，可扩大可压缩*/
+[iflex~="box:first"]>*,/*//第一个项目用实际空间，不扩大不压缩空间,剩余空间其他项目平均分配*/
+[iflex~="box:last"]>*,/*//最后一个项目用实际空间，不扩大不压缩空间,剩余空间其他项目平均分配*/
+[iflex~="box:justify"]>* { /*//两边项目用实际空间，不扩大不压缩空间,剩余空间其他项目平均分配*/
+  width: 0;
+  height: auto;
+
+  -webkit-box-flex: 1;/*//old chrome*/
+  -ms-flex-positive: 1;/*//ie10*/
+
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+
+  -ms-flex-negative: 1;/*//ie10*/
+
+  -webkit-flex-shrink: 1;/*//old chrome*/
+  flex-shrink: 1;
+}
+[iflex~="box:first"]>:first-child,
+[iflex~="box:last"]>:last-child,
+[iflex~="box:justify"]>:first-child,
+[iflex~="box:justify"]>:last-child {
+  width: auto;
+
+  -webkit-box-flex: 0;/*//old chrome*/
+  -ms-flex-positive: 0;/*//ie10*/
+
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+
+  -ms-flex-negative: 0;/*//ie10*/
+
+  -webkit-flex-shrink: 0;/*//old chrome*/
+  flex-shrink: 0;
+}
+[flex~="mainDir:top"][flex~="box:mean"]>*,
+[iflex~="mainDir:top"][iflex~="box:first"]>*,
+[iflex~="mainDir:top"][iflex~="box:last"]>*,
+[iflex~="mainDir:top"][iflex~="box:justify"]>*,
+[iflex~="mainDir:bottom"][iflex~="box:mean"]>*,
+[iflex~="mainDir:bottom"][iflex~="box:first"]>*,
+[iflex~="mainDir:bottom"][iflex~="box:last"]>*,
+[iflex~="mainDir:bottom"][iflex~="box:justify"]>* {
+	width: auto;
+	height: 0;
+}
+[iflex~="mainDir:top"][iflex~="box:first"]>:first-child,
+[iflex~="mainDir:top"][iflex~="box:last"]>:last-child,
+[iflex~="mainDir:top"][iflex~="box:justify"]>:first-child,
+[iflex~="mainDir:top"][iflex~="box:justify"]>:last-child,
+[iflex~="mainDir:bottom"][iflex~="box:first"]>:first-child,
+[iflex~="mainDir:bottom"][iflex~="box:last"]>:last-child,
+[iflex~="mainDir:bottom"][iflex~="box:justify"]>:first-child,
+[iflex~="mainDir:bottom"][iflex~="box:justify"]>:last-child {
+ 	height: auto;
+}
+
+
+
+[iflex-item~="grow:0"]{/*//还有空间，项目不放大*/
+	-webkit-box-flex: 0;/*//old chrome*/
+	-ms-flex-positive: 0;/*//ie10*/
+
+	-webkit-flex-grow: 0;
+	flex-grow: 0;
+}
+[iflex-item~="shrink:0"]{/*//空间不够，项目也不缩小*/
+	-ms-flex-negative: 0;/*//ie10*/
+
+	-webkit-flex-shrink: 0;/*//old chrome*/
+	flex-shrink: 0;
+}
+
+
+/*还有空间，项目占比*/
+[iflex-item~="grow:1"]{
+	-webkit-box-flex: 1;/*//old chrome*/
+	-ms-flex-positive: 1;/*//ie10*/
+
+	-webkit-flex-grow: 1;
+	flex-grow: 1;
+}
+[iflex-item~="grow:2"]{
+	-webkit-box-flex: 2;/*//old chrome*/
+	-ms-flex-positive: 2;/*//ie10*/
+
+	-webkit-flex-grow: 2;
+	flex-grow: 2;
+}
+[iflex-item~="grow:3"]{
+	-webkit-box-flex: 3;/*//old chrome*/
+	-ms-flex-positive: 3;/*//ie10*/
+
+	-webkit-flex-grow: 3;
+	flex-grow: 3;
+}
+[iflex-item~="grow:4"]{
+	-webkit-box-flex: 4;/*//old chrome*/
+	-ms-flex-positive: 4;/*//ie10*/
+
+	-webkit-flex-grow: 4;
+	flex-grow: 4;
+}
+[iflex-item~="grow:5"]{
+	-webkit-box-flex: 5;/*//old chrome*/
+	-ms-flex-positive: 5;/*//ie10*/
+
+	-webkit-flex-grow: 5;
+	flex-grow: 5;
+}
+[iflex-item~="grow:6"]{
+	-webkit-box-flex: 6;/*//old chrome*/
+	-ms-flex-positive: 6;/*//ie10*/
+
+	-webkit-flex-grow: 6;
+	flex-grow: 6;
+}
+[iflex-item~="grow:7"]{
+	-webkit-box-flex: 7;/*//old chrome*/
+	-ms-flex-positive: 7;/*//ie10*/
+
+	-webkit-flex-grow: 7;
+	flex-grow: 7;
+}
+[iflex-item~="grow:8"]{
+	-webkit-box-flex: 8;/*//old chrome*/
+	-ms-flex-positive: 8;/*//ie10*/
+
+	-webkit-flex-grow: 8;
+	flex-grow: 8;
+}
+[iflex-item~="grow:9"]{
+	-webkit-box-flex: 9;/*//old chrome*/
+	-ms-flex-positive: 9;/*//ie10*/
+
+	-webkit-flex-grow: 9;
+	flex-grow: 9;
+}
+[iflex-item~="grow:10"]{
+	-webkit-box-flex: 10;/*//old chrome*/
+	-ms-flex-positive: 10;/*//ie10*/
+
+	-webkit-flex-grow: 10;
+	flex-grow: 10;
+}
+
+
+
+/*空间不够，项目压缩占比*/
+[iflex-item~="shrink:1"]{
+	-ms-flex-negative: 1;/*//ie10*/
+
+	-webkit-flex-shrink: 1;
+	flex-shrink: 1;
+}
+[iflex-item~="shrink:2"]{
+	-ms-flex-negative: 2;/*//ie10*/
+
+	-webkit-flex-shrink: 2;
+	flex-shrink: 2;
+}
+[iflex-item~="shrink:3"]{
+	-ms-flex-negative: 3;/*//ie10*/
+
+	-webkit-flex-shrink: 3;
+	flex-shrink: 3;
+}
+[iflex-item~="shrink:4"]{
+	-ms-flex-negative: 4;/*//ie10*/
+
+	-webkit-flex-shrink: 4;
+	flex-shrink: 4;
+}
+[iflex-item~="shrink:5"]{
+	-ms-flex-negative: 5;/*//ie10*/
+
+	-webkit-flex-shrink: 5;
+	flex-shrink: 5;
+}
+[iflex-item~="shrink:6"]{
+	-ms-flex-negative: 6;/*//ie10*/
+
+	-webkit-flex-shrink: 6;
+	flex-shrink: 6;
+}
+[iflex-item~="shrink:7"]{
+	-ms-flex-negative: 7;/*//ie10*/
+
+	-webkit-flex-shrink: 7;
+	flex-shrink: 7;
+}
+[iflex-item~="shrink:8"]{
+	-ms-flex-negative: 8;/*//ie10*/
+
+	-webkit-flex-shrink: 8;
+	flex-shrink: 8;
+}
+[iflex-item~="shrink:9"]{
+	-ms-flex-negative: 9;/*//ie10*/
+
+	-webkit-flex-shrink: 9;
+	flex-shrink: 9;
+}
+[iflex-item~="shrink:10"]{
+	-ms-flex-negative: 10;/*//ie10*/
+
+	-webkit-flex-shrink: 10;
+	flex-shrink: 10;
+}
+
+
+/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto
+兼容ie10 -ms-flex-item-align :  stretch | start | end |center | baseline;*/
+[iflex-item~="align:auto"]{
+	-ms-flex-item-align:auto;/*//ie10*/
+
+	-webkit-align-self:auto;
+	align-self:auto;
+}
+[iflex-item~="align:left"]{
+	-ms-flex-item-align:start;/*//ie10*/
+
+	-webkit-align-self:flex-start;
+	align-self:flex-start;
+}
+[iflex-item~="align:right"]{
+	-ms-flex-item-align:end;/*//ie10*/
+
+	-webkit-align-self:flex-end;
+	align-self:flex-end;
+}
+[iflex-item~="align:center"]{
+	-ms-flex-item-align:center;/*//ie10*/
+
+	-webkit-align-self:center;
+	align-self:center;
+}
+[iflex-item~="align:baseline"]{
+	-ms-flex-item-align:baseline;/*//ie10*/
+
+	-webkit-align-self:baseline;
+	align-self:baseline;
+}
+[iflex-item~="align:stretch"]{
+	-ms-flex-item-align:stretch;/*//ie10*/
+
+	-webkit-align-self:stretch;
+	align-self:stretch;
+}
+
+
+/*设置   Flex 项目（flex item） end*/
