@@ -1,0 +1,25 @@
+{
+  "name": "iflex",
+  "version": "1.0.0",
+  "description": "flex css layout class",
+  "main": "iflex.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HomeEmail/iflex.git"
+  },
+  "keywords": [
+    "flex",
+    "css",
+    "layout",
+    "class"
+  ],
+  "author": "HomeEmail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HomeEmail/iflex/issues"
+  },
+  "homepage": "https://github.com/HomeEmail/iflex#readme"
+}
